@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="how to play page 2 placeholder">
+  <rect width="640" height="360" fill="#20262d"/>
+  <rect x="56" y="70" width="220" height="190" rx="12" fill="#2f3942"/>
+  <rect x="364" y="70" width="220" height="190" rx="12" fill="#2f3942"/>
+  <rect x="96" y="120" width="140" height="38" rx="6" fill="#f0b54c"/>
+  <rect x="406" y="120" width="140" height="38" rx="6" fill="#f35b4f"/>
+  <path d="M446 202c52-54 92-24 112 14-42-16-72 8-92 34z" fill="#f7f1df"/>
+  <circle cx="502" cy="218" r="10" fill="#171a1f"/>
+  <path d="M132 214h90v24h-90z" fill="#f7f1df"/>
+  <path d="M320 146l24 24-24 24-24-24z" fill="#56c985"/>
+  <rect x="118" y="292" width="404" height="24" rx="6" fill="#f7f1df" opacity=".9"/>
+</svg>

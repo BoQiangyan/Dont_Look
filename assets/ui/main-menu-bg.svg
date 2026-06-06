@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 1280" role="img" aria-label="main menu placeholder background">
+  <rect width="960" height="1280" fill="#1a1d22"/>
+  <rect y="750" width="960" height="530" fill="#2a2520"/>
+  <rect y="0" width="960" height="760" fill="#26313a"/>
+  <path d="M0 520h960v240H0z" fill="#384650"/>
+  <path d="M0 624h960v36H0z" fill="#15181c" opacity=".5"/>
+  <path d="M0 750h960v34H0z" fill="#100f0e"/>
+  <g fill="#f0b54c" opacity=".22">
+    <rect x="66" y="110" width="84" height="18"/>
+    <rect x="790" y="154" width="92" height="18"/>
+    <rect x="130" y="318" width="132" height="18"/>
+    <rect x="708" y="356" width="110" height="18"/>
+  </g>
+  <g opacity=".5">
+    <rect x="95" y="652" width="170" height="98" fill="#20252a"/>
+    <rect x="688" y="640" width="160" height="110" fill="#20252a"/>
+    <rect x="122" y="610" width="88" height="42" fill="#4f5a61"/>
+    <rect x="720" y="596" width="80" height="44" fill="#4f5a61"/>
+  </g>
+  <g fill="#111317" opacity=".3">
+    <rect x="0" y="810" width="960" height="14"/>
+    <rect x="0" y="890" width="960" height="12"/>
+    <rect x="0" y="970" width="960" height="12"/>
+    <rect x="0" y="1050" width="960" height="12"/>
+  </g>
+</svg>

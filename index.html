@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#15171a" />
+    <title>正面还是后面</title>
+    <link rel="stylesheet" href="./src/styles.css?v=fixed-world-verify-20260606" />
+  </head>
+  <body>
+    <div class="build-badge" aria-hidden="true">FIXED-WORLD-20260606</div>
+    <main id="mainMenu" class="main-menu" aria-label="正面还是后面主菜单">
+      <section class="menu-stage">
+        <nav class="menu-actions" aria-label="主菜单">
+          <button id="startGameBtn" class="menu-btn image-menu-btn mode-select" type="button" aria-label="单人模式">
+            <span class="mode-overlay">
+              <span class="mode-text">单人模式</span>
+            </span>
+            <img src="./assets/ui/menu-buttons/start-game.png" alt="" />
+          </button>
+          <button id="onlineMatchBtn" class="menu-btn image-menu-btn mode-select" type="button" aria-label="双人模式">
+            <span class="mode-overlay">
+              <span class="mode-text">双人对战</span>
+            </span>
+            <img src="./assets/ui/menu-buttons/start-game.png" alt="" />
+          </button>
+          <button id="settingsBtn" class="menu-btn image-menu-btn" type="button" aria-label="游戏设置">
+            <img src="./assets/ui/menu-buttons/settings.png" alt="" />
+          </button>
+        </nav>
+      </section>
+    </main>
+
+    <div id="modalLayer" class="modal-layer" hidden>
+      <section id="howToPlayModal" class="modal-card" role="dialog" aria-modal="true" aria-labelledby="howToPlayTitle" hidden>
+        <button class="modal-close" data-close-modal type="button" aria-label="关闭">×</button>
+        <div class="howto-media">
+          <img id="howToPlayImage" src="./assets/ui/howto-final/howto-page-01-turn-goal.png" alt="游戏说明配图" />
+        </div>
+        <div class="howto-copy">
+          <span id="howToPlayPageCount" class="page-count">1 / 5</span>
+          <h2 id="howToPlayTitle">目标和回合</h2>
+          <p id="howToPlayText">把对方血量打到 0 就赢。游戏采用攻防轮换：一方进攻，一方防守；本回合结束后，双方身份交换。</p>
+        </div>
+        <div class="modal-pager">
+          <button id="howToPrevBtn" class="menu-btn" type="button">上一页</button>
+          <button id="howToNextBtn" class="menu-btn primary" type="button">下一页</button>
+        </div>
+      </section>
+
+      <section id="settingsModal" class="modal-card" role="dialog" aria-modal="true" aria-labelledby="settingsTitle" hidden>
+        <button class="modal-close" data-close-modal type="button" aria-label="关闭">×</button>
+        <h2 id="settingsTitle">设置</h2>
+        <label class="setting-row">
+          <span>屏幕震动</span>
+          <input id="shakeToggle" type="checkbox" checked />
+        </label>
+        <label class="setting-row">
+          <span>倒计时强调</span>
+          <input id="timerPopToggle" type="checkbox" checked />
+        </label>
+        <label class="setting-row">
+          <span>游戏音效</span>
+          <input id="soundToggle" type="checkbox" checked />
+        </label>
+      </section>
+
+      <section id="pauseModal" class="modal-card pause-modal" role="dialog" aria-modal="true" aria-labelledby="pauseTitle" hidden>
+        <h2 id="pauseTitle">主菜单</h2>
+        <div class="pause-actions">
+          <button id="continueGameBtn" class="menu-btn primary" type="button">继续游戏</button>
+          <button id="returnMainMenuBtn" class="menu-btn" type="button">返回主界面</button>
+        </div>
+      </section>
+    </div>
+
+    <div id="matchmakingOverlay" class="matchmaking-overlay" hidden>
+      <div class="matchmaking-card">
+        <div class="matchmaking-spinner"></div>
+        <p id="matchmakingStatus">正在寻找对手……</p>
+        <button id="cancelMatchBtn" class="menu-btn" type="button">取消匹配</button>
+      </div>
+    </div>
+
+    <div id="charSelectScreen" class="char-select-screen" hidden>
+      <div class="char-select-card">
+        <h2 class="char-select-title">选择你的角色</h2>
+        <div class="char-select-grid">
+          <button id="pickZhang" class="char-card" type="button">
+            <img src="./assets/characters/zhang-idle.png" alt="马大愣" />
+            <span class="char-name">马大愣</span>
+            <span class="char-tagline">正面硬刚派</span>
+          </button>
+          <button id="pickMichel" class="char-card" type="button">
+            <img src="./assets/characters/michel-idle.png" alt="麦克老六" />
+            <span class="char-name">麦克老六</span>
+            <span class="char-tagline">背后阴人派</span>
+          </button>
+        </div>
+        <button id="charSelectBackBtn" class="menu-btn" type="button">返回</button>
+      </div>
+    </div>
+
+    <main id="app" class="game-shell" aria-label="正面还是后面" hidden>
+      <nav class="game-top-menu" aria-label="游戏菜单">
+        <button id="menuBtn" class="top-menu-btn" type="button">主菜单</button>
+        <span id="onlineIndicator" class="online-indicator" hidden></span>
+      </nav>
+
+      <section class="battle-hud" aria-label="双方状态">
+        <div class="status-card status-player" aria-label="玩家状态">
+          <span class="status-name">马大愣</span>
+          <div id="playerHp" class="hearts" aria-label="玩家血量"></div>
+          <div class="meter-group">
+            <span id="playerGauge" class="meter">心眼值 0/3</span>
+            <span id="playerCooldown" class="meter">投掷机 OK</span>
+          </div>
+        </div>
+        <div class="status-card status-ai" aria-label="AI 状态">
+          <span class="status-name">麦克老六</span>
+          <div id="aiHp" class="hearts" aria-label="AI 血量"></div>
+          <div class="meter-group">
+            <span id="aiGauge" class="meter">心眼值 0/3</span>
+            <span id="aiCooldown" class="meter">投掷机 OK</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="arena-slot" aria-label="战斗舞台">
+        <div id="arena" class="arena" aria-live="polite">
+          <div id="aiFighter" class="fighter fighter-ai" aria-label="AI 对手麦克老六"></div>
+
+          <div id="projectile" class="projectile" aria-hidden="true"></div>
+          <div id="burstText" class="burst-text">准备</div>
+
+          <div id="playerFighter" class="fighter fighter-player" aria-label="玩家角色马大愣"></div>
+        </div>
+      </section>
+
+      <section class="control-panel" aria-label="行动选择">
+        <div class="round-bar">
+          <span id="roundLabel">第 1 回合</span>
+          <strong id="timer">3.0</strong>
+          <span id="choiceLabel">请选择行动</span>
+        </div>
+
+        <div class="action-grid">
+          <button class="action-btn" data-action="front_punch" type="button">
+            <span class="action-title">正面来一下</span>
+            <span class="action-desc">抓猛回头</span>
+          </button>
+          <button class="action-btn" data-action="back_throw" type="button">
+            <span class="action-title">投掷铁块</span>
+            <span class="action-desc">砸不回头</span>
+          </button>
+          <button class="action-btn" data-action="fake_out" type="button">
+            <span class="action-title">啥也不干</span>
+            <span class="action-desc">骗回头</span>
+          </button>
+          <button class="action-btn special" data-action="double_punch" type="button">
+            <span class="action-title">连着来两下</span>
+            <span class="action-desc">心眼值满 3 点可用</span>
+          </button>
+          <button class="action-btn defend" data-action="guard_front" type="button">
+            <span class="action-title">就不回头</span>
+            <span class="action-desc">防正面拳</span>
+          </button>
+          <button class="action-btn defend" data-action="look_back" type="button">
+            <span class="action-title">猛回头</span>
+            <span class="action-desc">防背后铁块</span>
+          </button>
+        </div>
+
+        <button id="restartBtn" class="restart-btn" type="button">重新开局</button>
+      </section>
+    </main>
+
+    <script type="module" src="./src/main.js?v=fixed-world-verify-20260606"></script>
+  </body>
+</html>

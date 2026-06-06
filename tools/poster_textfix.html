@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <title>Poster text fix</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        background: #111;
+      }
+
+      canvas {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="poster"></canvas>
+    <script>
+      const params = new URLSearchParams(location.search);
+      const source = params.get("source");
+      const scale = Number(params.get("scale") || "1");
+      const canvas = document.querySelector("#poster");
+      const ctx = canvas.getContext("2d");
+      const image = new Image();
+
+      image.onload = () => {
+        canvas.width = image.naturalWidth;
+        canvas.height = image.naturalHeight;
+        ctx.imageSmoothingEnabled = false;
+        ctx.drawImage(image, 0, 0);
+
+        // The bottom-right scenario label is the only requested text change.
+        // Coordinates are proportional to the original 1054 x 1492 draft,
+        // so the same file can export both preview and 300dpi A3 versions.
+        const x = 807 * scale;
+        const y = 1347 * scale;
+        const w = 215 * scale;
+        const h = 60 * scale;
+        const radius = 8 * scale;
+
+        drawRoundedRect(ctx, x, y, w, h, radius, "#14100b");
+        ctx.lineWidth = 3 * scale;
+        ctx.strokeStyle = "#ffb12a";
+        ctx.stroke();
+
+        ctx.font = `${31 * scale}px "PingFang SC", "STHeiti", "Microsoft YaHei", sans-serif`;
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.lineJoin = "round";
+        ctx.lineWidth = 6 * scale;
+        ctx.strokeStyle = "#5b2b00";
+        ctx.fillStyle = "#ffd94a";
+        ctx.strokeText("派对破冰", x + w / 2, y + h / 2 + 1 * scale);
+        ctx.fillText("派对破冰", x + w / 2, y + h / 2 + 1 * scale);
+
+        window.__posterReady = true;
+      };
+
+      image.src = source;
+
+      function drawRoundedRect(ctx, x, y, w, h, r, fill) {
+        ctx.beginPath();
+        ctx.moveTo(x + r, y);
+        ctx.lineTo(x + w - r, y);
+        ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+        ctx.lineTo(x + w, y + h - r);
+        ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+        ctx.lineTo(x + r, y + h);
+        ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+        ctx.lineTo(x, y + r);
+        ctx.quadraticCurveTo(x, y, x + r, y);
+        ctx.closePath();
+        ctx.fillStyle = fill;
+        ctx.fill();
+      }
+    </script>
+  </body>
+</html>
