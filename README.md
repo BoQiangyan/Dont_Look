@@ -49,6 +49,12 @@
 进攻方需要判断防守方会不会回头。
 
 防守方需要判断进攻方会从正面攻击，还是从背后偷袭。
+<img width="1672" height="941" alt="ed2809a930f4c7ae05bd6b59ef90776f" src="https://github.com/user-attachments/assets/151bd232-dc72-4ab4-930d-4718c8284877" />
+<img width="1672" height="941" alt="0d9de2f5d9fa92a15c04f82108c74fc6" src="https://github.com/user-attachments/assets/ec526f35-49ac-421c-a241-895a842d5429" />
+<img width="1672" height="941" alt="d8bbfdfc322782fa880aa9bf6e6a1bca" src="https://github.com/user-attachments/assets/175a2c28-b6db-40cd-be1b-ec8804197a46" />
+
+
+
 
 ## 行动说明
 
